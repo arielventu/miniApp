@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import Context from "../context/StudentsState";
 
@@ -9,8 +9,7 @@ const CreateStudent = () => {
     carrera: "",
     hobbie: "",
   });
-  const { students, addStudent } = useContext(Context);
-  const [submitted, setSubmitted] = useState(false)
+  const { addStudent } = useContext(Context);
 
   const handleChange = (e) => {
     setStudent({
@@ -22,20 +21,13 @@ const CreateStudent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addStudent(student);
-    setSubmitted(true)
-    
-  };
-
-  useEffect(() => {
     setStudent({
       nombre: "",
       edad: 0,
       carrera: "",
       hobbie: "",
     });
-    setSubmitted(false)
-  }, [submitted]);
-  
+  };
 
   return (
     <Container className="justify-content-md-center mt-5">
